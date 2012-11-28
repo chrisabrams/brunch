@@ -385,7 +385,7 @@ exports.loadPackages = (rootPath, callback) ->
   fs.readFile sysPath.join(rootPath, 'package.json'), (error, data) ->
     return callback error if error?
     json = JSON.parse(data)
-    deps = Object.keys(extend(json.devDependencies ? {}, json.dependencies))
+    deps = Object.keys(extend(json.dependencies))
     try
       plugins = deps.map (dependency) -> require "#{nodeModules}/#{dependency}"
     catch err
